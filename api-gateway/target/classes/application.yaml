@@ -1,0 +1,60 @@
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: false
+    include-stacktrace: never
+#app:
+  #disable-default-exception-handling: false
+
+spring:
+  application:
+    name: API-GATEWAY
+
+  cloud:
+    gateway:
+      routes:
+        # USER SERVICE
+        - id: JWT-SERVICE
+          uri: lb://JWT-SERVICE
+          predicates:
+            - Path=/users/**
+
+        # FOOD SERVICE
+        - id: FOOD-SERVICE
+          uri: lb://FOOD-SERVICE
+          predicates:
+            - Path=/food/**
+          filters:
+            - AuthFilter
+
+        # RESTAURANT SERVICE
+        - id: RESTAURANT-SERVICE
+          uri: lb://RESTAURANT-SERVICE
+          predicates:
+            - Path=/restaurant/**
+          filters:
+            - AuthFilter
+
+# For Register with eureka server as a client
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+
+management:
+  health:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+  endpoint:
+    health:
+      show-details: always
+
