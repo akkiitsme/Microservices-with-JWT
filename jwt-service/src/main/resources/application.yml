@@ -1,0 +1,42 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: JWT-SERVICE
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: microservice
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate: DEBUG
+
+management:
+  health:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+  endpoint:
+    health:
+      show-details: always
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+#      default-time-zone: http://localhost:8761/eureka
+      defaultZone: http://admin:itsmeak6@localhost:8761/eureka
