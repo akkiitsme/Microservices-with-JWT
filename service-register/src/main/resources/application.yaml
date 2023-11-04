@@ -1,0 +1,20 @@
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: false
+    register-with-eureka: false #It is used to avoid by default service not register itself
+
+spring:
+  security:
+    user:
+      name: admin
+      password: itsmeak6
+      roles:
+        - ADMIN
+#  basic:
+#    enabled: true
+

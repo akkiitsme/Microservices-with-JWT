@@ -1,0 +1,37 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: FOOD-SERVICE
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: microservice
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate: DEBUG
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      default-time-zone: http://localhost:8761/eureka
+
+springdoc:
+  swagger-ui:
+    path: /public/swagger-ui
+
+
+
+
