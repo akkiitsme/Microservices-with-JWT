@@ -1,0 +1,55 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: ORDER-SERVICE
+  zipkin:
+    base-url: http://localhost:9411/
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/microservices
+    username: 'postgres'
+    password: 'itsmeak6'
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql : true
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - prometheus
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://admin:itsmeak6@localhost:8761/eureka
+
+
+
+
