@@ -68,23 +68,5 @@ public class SwaggerConfig extends WebSecurityConfigurerAdapter {
                 .build();
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().cors().disable().authorizeRequests()
-                .antMatchers("/v2/api-docs",
-                        "/configuration/ui",
-                        "/swagger-resources/**",
-                        "/configuration/security",
-                        "restaurant/swagger-ui.html",
-                        "/webjars/**")
-                .authenticated().and().httpBasic();
-
-    }
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("akkiitsme").password("itsmeak6").roles("ADMIN");
-    }
-
 
 }
