@@ -13,9 +13,6 @@ import org.springdoc.core.GroupedOpenApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
 @OpenAPIDefinition(
@@ -58,7 +55,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
         bearerFormat = "JWT",
         in = SecuritySchemeIn.HEADER
 )
-public class SwaggerConfig extends WebSecurityConfigurerAdapter {
+public class SwaggerConfig {
 
     @Bean
     public GroupedOpenApi publicApi() {
